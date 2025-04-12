@@ -2,10 +2,10 @@
 version: '3.4'
 
 services:
-  workerrobo:
-    image: workerrobo
+  workerrobocadastro:
+    image: workerrobocadastro
     build:
       context: .
-      dockerfile: Worker.Robo/Dockerfile
+      dockerfile: WorkerRoboCadastros/Dockerfile
     volumes:
       - ~/.vsdbg:/remote_debugger:rw

@@ -3,7 +3,7 @@ version: '3.4'
 
 services:
   workerrobo:
-    image: workerrobo
+    image: workerrobocadastro
     build:
       context: .
       dockerfile: ./Dockerfile
