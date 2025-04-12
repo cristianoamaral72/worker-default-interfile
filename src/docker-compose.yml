@@ -1,0 +1,22 @@
+
+version: '3.4'
+
+services:
+  workerrobo:
+    image: workerrobo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+          - sqlserver
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: 'sqlserver'
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: "Myp4ssw0rd!"
+    volumes:
+      - C:\dados\volumes\sqlserver:/var/opt/mssql3
+    ports:
+      - '11433:1433'
