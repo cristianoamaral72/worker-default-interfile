@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Worker.Domain.Entities;
+using Worker.Domain.Interfaces.Services.Base;
 using Worker.Domain.Model;
 
 namespace Worker.Domain.Interfaces.Services;
 
-public interface ICategoriaService
+public interface ICategoriaService : IServiceBase<Categoria>
 {
     Task<IEnumerable<Categoria>> GetAllAsync();
     Task<Categoria> GetByIdAsync(int id);

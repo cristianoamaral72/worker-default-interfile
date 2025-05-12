@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Worker.Domain.Entities;
+using Worker.Domain.Interfaces.Base;
 using Worker.Domain.Interfaces.Repositories;
 using Worker.Domain.Interfaces.Services;
 using Worker.Domain.Model;
+using Worker.Service.Services.Base;
 
-public class CategoriaService : ICategoriaService
+public class CategoriaService : ServiceBase<Categoria>, ICategoriaService
 {
     private readonly ICategoriaRepository _categoriaRepository;
-    private ICategoriaService _categoriaServiceImplementation;
 
-    public CategoriaService(ICategoriaRepository categoriaRepository)
+    public CategoriaService(IBaseRepository<Categoria> repository, ICategoriaRepository categoriaRepository) : base(repository)
     {
         _categoriaRepository = categoriaRepository;
     }

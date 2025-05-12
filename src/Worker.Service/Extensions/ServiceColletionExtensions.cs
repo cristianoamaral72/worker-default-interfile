@@ -1,8 +1,4 @@
-﻿using Google.Apis.Indexing.v3;
-using Google.Apis.SearchConsole.v1;
-using Google.Apis.Sheets.v4;
-using Google.Apis.Webmasters.v3;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using Worker.Data.Configs;
 using Worker.Data.Contexts;
@@ -15,6 +11,7 @@ using Worker.Domain.Interfaces.Repositories;
 using Worker.Domain.Interfaces.Services;
 using Worker.Domain.Interfaces.Services.Base;
 using Worker.Domain.Interfaces.Services.Chrome;
+using Worker.Service.Services;
 using Worker.Service.Services.Autenticacao;
 using Worker.Service.Services.Chrome;
 using Worker.Service.Services.Jobs;
@@ -49,9 +46,11 @@ namespace Worker.Service.Extensions
             //Repository
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+            services.AddTransient<IVivoCargaRepository, VivoCargaRepository>();
 
             // Services
             services.AddTransient<ICategoriaService, CategoriaService>();
+            services.AddTransient<IVivoCargaService, VivoService>();
 
             services.AddTransient<IColetaDadosJob, ColetaDadosJob>();
             services.AddTransient<INavigator, Navigator>();

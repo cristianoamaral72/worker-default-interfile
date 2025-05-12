@@ -16,8 +16,8 @@ namespace WorkerRoboCadastros
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            // Expressão CRON para cada 10 segundos
-            string cronExpression = "*/10 * * * * *";
+            // Configuração do agendamento para cada 5 minutos
+            const string cronExpression = "0 */5 * * * *"; // Formato CRON com segundos (a cada 5 minutos)
             var schedule = Cronos.CronExpression.Parse(cronExpression, Cronos.CronFormat.IncludeSeconds);
 
             while (!stoppingToken.IsCancellationRequested)
@@ -28,7 +28,7 @@ namespace WorkerRoboCadastros
                 // Calcula o intervalo de tempo para aguardar até a próxima execução
                 TimeSpan delay = nextOccurrence.HasValue
                     ? nextOccurrence.Value - DateTime.UtcNow
-                    : TimeSpan.FromSeconds(10); // fallback caso não retorne valor
+                    : TimeSpan.FromMinutes(5); // Fallback seguro
 
                 try
                 {
